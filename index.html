@@ -1,12 +1,225 @@
-<html lang="en">
+<!DOCTYPE html>
+<html lang="es">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-    <link rel="stylesheet" href="style.css"/>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Mi Espacio | Bienestar Teen</title>
+  <style>
+    :root {
+      --bg-color: #f4f7f6;
+      --card-bg: #ffffff;
+      --accent-soft: #a8dadc;
+      --accent-strong: #457b9d;
+      --text-main: #2b2d42;
+      --text-muted: #6c757d;
+      --radius: 16px;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    }
+
+    body {
+      background-color: var(--bg-color);
+      color: var(--text-main);
+      display: flex;
+      justify-content: center;
+      padding: 20px;
+    }
+
+    .container {
+      max-width: 500px;
+      width: 100%;
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+    }
+
+    header {
+      text-align: center;
+      padding: 10px 0;
+    }
+
+    header h1 {
+      font-size: 1.8rem;
+      color: var(--accent-strong);
+    }
+
+    header p {
+      color: var(--text-muted);
+      font-size: 0.95rem;
+    }
+
+    .card {
+      background: var(--card-bg);
+      padding: 20px;
+      border-radius: var(--radius);
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+    }
+
+    .card h2 {
+      font-size: 1.2rem;
+      margin-bottom: 15px;
+      color: var(--accent-strong);
+    }
+
+    /* Selector de emociones */
+    .mood-options {
+      display: flex;
+      justify-content: space-between;
+      gap: 8px;
+    }
+
+    .mood-btn {
+      background: var(--bg-color);
+      border: 2px solid transparent;
+      border-radius: 12px;
+      padding: 10px;
+      font-size: 1.5rem;
+      cursor: pointer;
+      flex: 1;
+      transition: all 0.2s ease;
+    }
+
+    .mood-btn:hover, .mood-btn.selected {
+      border-color: var(--accent-strong);
+      background-color: #e8f1f5;
+      transform: translateY(-2px);
+    }
+
+    /* Barra de estrés */
+    .range-group {
+      margin-top: 15px;
+    }
+
+    .range-group label {
+      display: block;
+      font-size: 0.9rem;
+      margin-bottom: 8px;
+      color: var(--text-muted);
+    }
+
+    input[type="range"] {
+      width: 100%;
+      accent-color: var(--accent-strong);
+    }
+
+    /* Animación de respiración */
+    .breathing-container {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 20px 0;
+    }
+
+    .circle-outer {
+      width: 140px;
+      height: 140px;
+      border-radius: 50%;
+      background: #e0f2fe;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 15px;
+    }
+
+    .circle-inner {
+      width: 80px;
+      height: 80px;
+      border-radius: 50%;
+      background: var(--accent-soft);
+      animation: breathe 8s infinite ease-in-out;
+    }
+
+    @keyframes breathe {
+      0%, 100% {
+        transform: scale(1);
+      }
+      50% {
+        transform: scale(1.5);
+        background: var(--accent-strong);
+      }
+    }
+
+    .breath-instruction {
+      font-weight: 600;
+      color: var(--accent-strong);
+    }
+
+    /* Tips colapsables */
+    details {
+      background: var(--bg-color);
+      padding: 12px;
+      border-radius: 8px;
+      margin-bottom: 8px;
+      cursor: pointer;
+    }
+
+    summary {
+      font-weight: 600;
+      color: var(--text-main);
+    }
+
+    details p {
+      margin-top: 8px;
+      font-size: 0.9rem;
+      color: var(--text-muted);
+      line-height: 1.4;
+    }
+  </style>
 </head>
 <body>
-<div class="targeta"
-    
+
+  <div class="container">
+    <header>
+      <h1>Tu Espacio</h1>
+      <p>Pausa, respira y conecta con vos.</p>
+    </header>
+
+    <section class="card">
+      <h2>¿Cómo te sentís hoy?</h2>
+      <div class="mood-options">
+        <button class="mood-btn" title="Tranquilo/a">😌</button>
+        <button class="mood-btn" title="Bien">😊</button>
+        <button class="mood-btn" title="Cansado/a">😴</button>
+        <button class="mood-btn" title="Ansioso/a">😰</button>
+        <button class="mood-btn" title="Enojado/a">😡</button>
+      </div>
+
+      <div class="range-group">
+        <label for="stress">Nivel de estrés / sobrecarga:</label>
+        <input type="range" id="stress" min="1" max="5" value="3">
+      </div>
+    </section>
+
+    <section class="card">
+      <h2>Pausa Activa: Respiración Guiada</h2>
+      <div class="breathing-container">
+        <div class="circle-outer">
+          <div class="circle-inner"></div>
+        </div>
+        <p class="breath-instruction">Inhala al expandir, exhala al contraer</p>
+      </div>
+    </section>
+
+    <section class="card">
+      <h2>Técnicas Rápidas</h2>
+      
+      <details>
+        <summary>Técnica 5-4-3-2-1 (Grounding)</summary>
+        <p>Mira a tu alrededor y nombra: 5 cosas que puedas ver, 4 que puedas tocar, 3 que puedas oír, 2 que puedas oler y 1 que puedas saborear. Te ayuda a volver al presente.</p>
+      </details>
+
+      <details>
+        <summary>Reset Visual</summary>
+        <p>Aparta la vista de las pantallas durante 20 segundos y mira a un punto lejano a más de 6 metros. Relaja la vista y la mente.</p>
+      </details>
+    </section>
+  </div>
+
 </body>
 </html>
